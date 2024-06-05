@@ -1,0 +1,45 @@
+object cadFileSelector: TcadFileSelector
+  Size.Width = 311.000000000000000000
+  Size.Height = 680.000000000000000000
+  Size.PlatformDefault = False
+  object btnChooseAFolder: TButton
+    Align = Top
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 5.000000000000000000
+    Size.Width = 301.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Text = 'Choose a folder'
+    TextSettings.Trimming = None
+    OnClick = btnChooseAFolderClick
+  end
+  object lbFilesList: TListBox
+    Align = Client
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Size.Width = 301.000000000000000000
+    Size.Height = 638.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    AlternatingRowBackground = True
+    DisableFocusEffect = True
+    DefaultItemStyles.ItemStyle = ''
+    DefaultItemStyles.GroupHeaderStyle = ''
+    DefaultItemStyles.GroupFooterStyle = ''
+    Sorted = True
+    Viewport.Width = 297.000000000000000000
+    Viewport.Height = 634.000000000000000000
+  end
+  object OlfSelectDirectoryDialog1: TOlfSelectDirectoryDialog
+    Root = ''
+    Left = 144
+    Top = 328
+  end
+end
