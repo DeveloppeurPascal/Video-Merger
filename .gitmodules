@@ -1,0 +1,12 @@
+[submodule "lib-externes/Delphi-FMXExtend-Library"]
+	path = lib-externes/Delphi-FMXExtend-Library
+	url = https://github.com/DeveloppeurPascal/Delphi-FMXExtend-Library.git
+[submodule "lib-externes/librairies"]
+	path = lib-externes/librairies
+	url = https://github.com/DeveloppeurPascal/librairies.git
+[submodule "lib-externes/AboutDialog-Delphi-Component"]
+	path = lib-externes/AboutDialog-Delphi-Component
+	url = https://github.com/DeveloppeurPascal/AboutDialog-Delphi-Component.git
+[submodule "lib-externes/DOSCommand"]
+	path = lib-externes/DOSCommand
+	url = https://github.com/TurboPack/DOSCommand.git
