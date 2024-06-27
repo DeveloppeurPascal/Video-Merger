@@ -12,6 +12,7 @@ object frmMain: TfrmMain
   OnCloseQuery = FormCloseQuery
   DesignerMasterStyle = 0
   object ToolBar1: TToolBar
+    Align = MostTop
     Size.Width = 1051.000000000000000000
     Size.Height = 40.000000000000000000
     Size.PlatformDefault = False
@@ -27,7 +28,7 @@ object frmMain: TfrmMain
       Size.Width = 80.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 0
+      TabOrder = 1
       Text = 'Options'
       TextSettings.Trimming = None
       OnClick = btnOptionsClick
@@ -43,7 +44,7 @@ object frmMain: TfrmMain
       Size.Width = 80.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 1
+      TabOrder = 2
       Text = 'About'
       TextSettings.Trimming = None
       OnClick = btnAboutClick
@@ -59,7 +60,7 @@ object frmMain: TfrmMain
       Size.Width = 80.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 2
+      TabOrder = 3
       Text = 'Quit'
       TextSettings.Trimming = None
       OnClick = btnQuitClick
@@ -88,7 +89,7 @@ object frmMain: TfrmMain
       Size.Width = 160.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 4
+      TabOrder = 0
       Text = 'Add a file selector'
       TextSettings.Trimming = None
       OnClick = btnAddAFileSelectorClick
@@ -101,11 +102,11 @@ object frmMain: TfrmMain
     TextSettings.WordWrap = True
     Align = Client
     Size.Width = 1051.000000000000000000
-    Size.Height = 275.000000000000000000
+    Size.Height = 243.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 1
+    TabOrder = 3
     Viewport.Width = 1047.000000000000000000
-    Viewport.Height = 271.000000000000000000
+    Viewport.Height = 239.000000000000000000
   end
   object HorzScrollBox1: THorzScrollBox
     Align = Top
@@ -113,25 +114,9 @@ object frmMain: TfrmMain
     Size.Width = 1051.000000000000000000
     Size.Height = 385.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 2
+    TabOrder = 1
     Viewport.Width = 1051.000000000000000000
     Viewport.Height = 385.000000000000000000
-    object btnAdd: TButton
-      Align = MostBottom
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 358.000000000000000000
-      Size.Width = 1041.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 0
-      Text = 'Merge'
-      TextSettings.Trimming = None
-      OnClick = btnAddClick
-    end
   end
   object StatusBar1: TStatusBar
     HitTest = False
@@ -165,5 +150,21 @@ object frmMain: TfrmMain
     Copyright = '(c) 2024 Patrick Pr'#233'martin'
     Left = 304
     Top = 112
+  end
+  object btnAdd: TButton
+    Align = Top
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 430.000000000000000000
+    Size.Width = 1041.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'Merge'
+    TextSettings.Trimming = None
+    OnClick = btnAddClick
   end
 end
