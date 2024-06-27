@@ -72,7 +72,8 @@ implementation
 
 uses
   u_urlOpen,
-  uConfig;
+  uConfig,
+  fOptions;
 
 procedure TfrmMain.AddLog(const Text: string);
 begin
@@ -151,9 +152,15 @@ begin
 end;
 
 procedure TfrmMain.btnOptionsClick(Sender: TObject);
+var
+  frm: TfrmOptions;
 begin
-  // TODO : à compléter
-  showmessage('in next release');
+  frm := TfrmOptions.Create(self);
+  try
+    frm.ShowModal;
+  finally
+    frm.free;
+  end;
 end;
 
 procedure TfrmMain.btnQuitClick(Sender: TObject);
