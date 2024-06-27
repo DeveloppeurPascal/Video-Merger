@@ -95,8 +95,6 @@ begin
   newcad := TcadFileSelector.Create(self);
   newcad.Name := '';
   newcad.Parent := FlowLayout1;
-  newcad.height := FlowLayout1.height - newcad.margins.top -
-    newcad.margins.bottom;
   newcad.TagObject := nil;
 
   if assigned(preccad) then
@@ -114,7 +112,10 @@ begin
     end;
   newcad.ChangePathTo(tconfig.GetSelectInPath(newcad.tag));
 
-  FlowLayout1.width := FlowLayout1.width + newcad.width;
+  newcad.height := FlowLayout1.height - newcad.margins.top -
+    newcad.margins.bottom;
+  FlowLayout1.width := FlowLayout1.width + newcad.margins.left + newcad.width +
+    newcad.margins.right;
 end;
 
 procedure TfrmMain.btnMergeFilesClick(Sender: TObject);
@@ -243,11 +244,7 @@ begin
   FMergingWorker.Start;
 
   for i := 1 to tconfig.NbVideosToMerge do
-    tthread.forcequeue(nil,
-      procedure
-      begin
-        btnAddAFileSelectorClick(self);
-      end);
+    btnAddAFileSelectorClick(self);
 end;
 
 procedure TfrmMain.InitAboutDialogDescriptionAndLicense;
