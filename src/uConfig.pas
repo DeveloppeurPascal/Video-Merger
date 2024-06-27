@@ -87,21 +87,12 @@ end;
 
 class function TConfig.GetFFmpegPath: string;
 begin
-  // TODO : change default FFmpeg path
-{$IFDEF MACOS}
-  result := tparams.getValue('FFmpeg', '/Volumes/LeTempsDUneTomate/ffmpeg');
-{$ELSE}
   result := tparams.getValue('FFmpeg', '');
-{$ENDIF}
 end;
 
 class function TConfig.GetMergeToPath: string;
-begin // TODO : change default destination fodler
-{$IFDEF MACOS}
-  result := tparams.getValue('ToPath', '/Volumes/PatrickPremartin1To/Videos');
-{$ELSE}
+begin
   result := tparams.getValue('ToPath', '');
-{$ENDIF}
 end;
 
 class function TConfig.GetNbVideosToMerge: integer;
