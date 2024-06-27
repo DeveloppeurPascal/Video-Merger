@@ -21,6 +21,7 @@ uses
   FMX.StdCtrls,
   Olf.FMX.AboutDialog,
   Olf.FMX.AboutDialogForm,
+  cFileSelector,
   uMergingWorker;
 
 type
@@ -31,12 +32,14 @@ type
     btnOptions: TButton;
     btnAbout: TButton;
     btnQuit: TButton;
-    btnAdd: TButton;
+    btnMergeFiles: TButton;
     OlfAboutDialog1: TOlfAboutDialog;
     AniIndicator1: TAniIndicator;
     btnAddAFileSelector: TButton;
     StatusBar1: TStatusBar;
     lblWaitingListStatus: TLabel;
+    FlowLayout1: TFlowLayout;
+    Splitter1: TSplitter;
     procedure btnQuitClick(Sender: TObject);
     procedure btnAboutClick(Sender: TObject);
     procedure btnOptionsClick(Sender: TObject);
@@ -44,15 +47,19 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure btnAddAFileSelectorClick(Sender: TObject);
-    procedure btnAddClick(Sender: TObject);
+    procedure btnMergeFilesClick(Sender: TObject);
+    procedure FlowLayout1Resize(Sender: TObject);
   private
     FMergingWorker: TMergingWorker;
     procedure SetWaitingListCount(const Value: nativeint);
+    function GetLastFileSelector: TcadFileSelector;
+    function GetFirstFileSelector: TcadFileSelector;
   protected
     property WaitingListCount: nativeint write SetWaitingListCount;
     procedure AddLog(Const Text: string);
     procedure InitMainFormCaption;
     procedure InitAboutDialogDescriptionAndLicense;
+
   public
   end;
 
@@ -64,7 +71,6 @@ implementation
 {$R *.fmx}
 
 uses
-  cFileSelector,
   u_urlOpen,
   uConfig;
 
@@ -82,23 +88,14 @@ end;
 procedure TfrmMain.btnAddAFileSelectorClick(Sender: TObject);
 var
   preccad, newcad: TcadFileSelector;
-  i: integer;
 begin
-  preccad := nil;
-  for i := 0 to HorzScrollBox1.Content.ChildrenCount - 1 do
-    if HorzScrollBox1.Content.Children[i] is TcadFileSelector then
-    begin
-      preccad := HorzScrollBox1.Content.Children[i] as TcadFileSelector;
-      break;
-    end;
-
-  while assigned(preccad) and assigned(preccad.TagObject) do
-    preccad := preccad.TagObject as TcadFileSelector;
+  preccad := GetLastFileSelector;
 
   newcad := TcadFileSelector.Create(self);
   newcad.Name := '';
-  newcad.Parent := HorzScrollBox1;
-  newcad.Align := talignlayout.Left;
+  newcad.Parent := FlowLayout1;
+  newcad.height := FlowLayout1.height - newcad.margins.top -
+    newcad.margins.bottom;
   newcad.TagObject := nil;
 
   if assigned(preccad) then
@@ -115,22 +112,17 @@ begin
       tconfig.save;
     end;
   newcad.ChangePathTo(tconfig.GetSelectInPath(newcad.tag));
+
+  FlowLayout1.width := FlowLayout1.width + newcad.width;
 end;
 
-procedure TfrmMain.btnAddClick(Sender: TObject);
+procedure TfrmMain.btnMergeFilesClick(Sender: TObject);
 var
   FilePath, FilesList: string;
   cad: TcadFileSelector;
-  nb, i: integer;
+  nb: integer;
 begin
-  cad := nil;
-  for i := 0 to HorzScrollBox1.Content.ChildrenCount - 1 do
-    if (HorzScrollBox1.Content.Children[i] is TcadFileSelector) and
-      ((HorzScrollBox1.Content.Children[i] as TcadFileSelector).tag = 1) then
-    begin
-      cad := HorzScrollBox1.Content.Children[i] as TcadFileSelector;
-      break;
-    end;
+  cad := GetFirstFileSelector;
 
   FilesList := '';
   nb := 0;
@@ -169,6 +161,19 @@ begin
   close;
 end;
 
+procedure TfrmMain.FlowLayout1Resize(Sender: TObject);
+var
+  i: integer;
+  c: TcadFileSelector;
+begin
+  for i := 0 to FlowLayout1.ChildrenCount - 1 do
+    if FlowLayout1.Children[i] is TcadFileSelector then
+    begin
+      c := FlowLayout1.Children[i] as TcadFileSelector;
+      c.height := FlowLayout1.height - c.margins.top - c.margins.bottom;
+    end;
+end;
+
 procedure TfrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   FMergingWorker.stop;
@@ -196,6 +201,8 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 var
   i: integer;
 begin
+  FlowLayout1.width := 20;
+
   InitMainFormCaption;
   InitAboutDialogDescriptionAndLicense;
 
@@ -265,6 +272,35 @@ begin
     'If you have any questions or require additional functionality, please leave us a message on the application''s website or on its code repository.'
     + slinebreak + slinebreak + 'To find out more, visit ' +
     OlfAboutDialog1.URL;
+end;
+
+function TfrmMain.GetFirstFileSelector: TcadFileSelector;
+var
+  i: integer;
+begin
+  result := nil;
+  for i := 0 to FlowLayout1.ChildrenCount - 1 do
+    if (FlowLayout1.Children[i] is TcadFileSelector) and
+      ((FlowLayout1.Children[i] as TcadFileSelector).tag = 1) then
+    begin
+      result := FlowLayout1.Children[i] as TcadFileSelector;
+      break;
+    end;
+end;
+
+function TfrmMain.GetLastFileSelector: TcadFileSelector;
+var
+  i: integer;
+begin
+  result := nil;
+  for i := 0 to FlowLayout1.ChildrenCount - 1 do
+    if FlowLayout1.Children[i] is TcadFileSelector then
+    begin
+      result := FlowLayout1.Children[i] as TcadFileSelector;
+      break;
+    end;
+  while assigned(result) and assigned(result.TagObject) do
+    result := result.TagObject as TcadFileSelector;
 end;
 
 procedure TfrmMain.InitMainFormCaption;
