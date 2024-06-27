@@ -4,6 +4,7 @@ object frmMain: TfrmMain
   Caption = 'Form1'
   ClientHeight = 754
   ClientWidth = 1044
+  Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
