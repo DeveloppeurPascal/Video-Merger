@@ -78,21 +78,36 @@ end;
 procedure TMergingWorker.AddToQueue(const VideosPathWithTabSeparator: string);
 var
   Count: Nativeint;
+  s: string;
+  DoNotAdd: boolean;
 begin
   if VideosPathWithTabSeparator.IsEmpty then
     exit;
+
   System.TMonitor.Enter(FWaitingList);
   try
-    FWaitingList.Enqueue(VideosPathWithTabSeparator);
-    if assigned(FOnWaitingListCountChange) then
-    begin
-      Count := FWaitingList.Count;
-      TThread.Queue(nil,
-        procedure
+    DoNotAdd := false;
+    if FWaitingList.Count > 0 then
+      for s in FWaitingList do
+        if s = VideosPathWithTabSeparator then
         begin
-          if assigned(FOnWaitingListCountChange) then
-            FOnWaitingListCountChange(Count);
-        end);
+          DoNotAdd := true;
+          break;
+        end;
+
+    if not DoNotAdd then
+    begin
+      FWaitingList.Enqueue(VideosPathWithTabSeparator);
+      if assigned(FOnWaitingListCountChange) then
+      begin
+        Count := FWaitingList.Count;
+        TThread.Queue(nil,
+          procedure
+          begin
+            if assigned(FOnWaitingListCountChange) then
+              FOnWaitingListCountChange(Count);
+          end);
+      end;
     end;
   finally
     System.TMonitor.exit(FWaitingList);
@@ -168,8 +183,8 @@ begin
                 FOnWorkStart;
             end);
         try
-          cmd := cmd + ' -filter_complex ''concat=n=' +
-            NbVideos.tostring + ':v=1:a=1''';
+          cmd := cmd + ' -filter_complex ''concat=n=' + NbVideos.tostring +
+            ':v=1:a=1''';
           inc(Counter);
           ToFilePath := tpath.Combine(TConfig.MergeToPath,
             ToFileName + '-' + Counter.tostring + '.mp4');
