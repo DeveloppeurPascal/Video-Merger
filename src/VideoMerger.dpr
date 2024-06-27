@@ -12,7 +12,8 @@ uses
   Olf.RTL.Params in '..\lib-externes\librairies\src\Olf.RTL.Params.pas',
   u_urlOpen in '..\lib-externes\librairies\src\u_urlOpen.pas',
   uConfig in 'uConfig.pas',
-  uMergingWorker in 'uMergingWorker.pas';
+  uMergingWorker in 'uMergingWorker.pas',
+  fOptions in 'fOptions.pas' {frmOptions};
 
 {$R *.res}
 

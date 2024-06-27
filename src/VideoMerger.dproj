@@ -374,6 +374,10 @@
         <DCCReference Include="..\lib-externes\librairies\src\u_urlOpen.pas"/>
         <DCCReference Include="uConfig.pas"/>
         <DCCReference Include="uMergingWorker.pas"/>
+        <DCCReference Include="fOptions.pas">
+            <Form>frmOptions</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -426,6 +430,12 @@
                 <DeployFile LocalName="$(BDS)\bin\delphi_PROJECTICNS.icns" Configuration="Release" Class="ProjectOSXResource">
                     <Platform Name="OSXARM64">
                         <RemoteName>VideoMerger.icns</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="OSXARM64\Debug\VideoMerger.dSYM" Configuration="Debug" Class="ProjectOSXDebug">
+                    <Platform Name="OSXARM64">
+                        <RemoteName>VideoMerger</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
