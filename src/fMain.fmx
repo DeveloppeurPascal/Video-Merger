@@ -163,6 +163,7 @@ object frmMain: TfrmMain
     Images = dmLogo.imgLogo
     ImageIndex = 0
     URL = 'https://videomerger.olfsoftware.fr'
+    onURLClick = OlfAboutDialog1URLClick
     Copyright = '(c) 2024 Patrick Pr'#233'martin'
     Left = 304
     Top = 112

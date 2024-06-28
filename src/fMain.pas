@@ -50,6 +50,7 @@ type
     procedure btnAddAFileSelectorClick(Sender: TObject);
     procedure btnMergeFilesClick(Sender: TObject);
     procedure FlowLayout1Resize(Sender: TObject);
+    procedure OlfAboutDialog1URLClick(const AURL: string);
   private
     FMergingWorker: TMergingWorker;
     procedure SetWaitingListCount(const Value: nativeint);
@@ -317,6 +318,11 @@ begin
 {$ENDIF}
   caption := caption + OlfAboutDialog1.Titre + ' v' +
     OlfAboutDialog1.VersionNumero;
+end;
+
+procedure TfrmMain.OlfAboutDialog1URLClick(const AURL: string);
+begin
+  url_Open_In_Browser(AURL);
 end;
 
 procedure TfrmMain.SetWaitingListCount(const Value: nativeint);
