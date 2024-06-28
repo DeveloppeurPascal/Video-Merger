@@ -12,11 +12,11 @@ This software is available in a directly installable or executable production ve
 
 You can download and redistribute it free of charge, provided you do not modify its content (installer, program, additional files, etc.).
 
-[Download program or installer](DDD)
+[Download program or installer](https://olfsoftware.lemonsqueezy.com/buy/91e5ea90-ab68-450d-9898-1b81fffeae93) (WIP)
 
 If you use this software regularly and are satisfied with it, you are invited to purchase an end-user license. Purchasing a license will give you access to software updates, as well as enabling optional features.
 
-[Buy a license](FFF)
+[Buy a license](https://olfsoftware.lemonsqueezy.com/buy/b2a4e98b-23d5-4d03-8486-fefa313a66da) (WIP)
 
 You can also [visit the software website](https://videomerger.olfsoftware.fr/) to find out more about how it works, access videos and articles, find out about the different versions available and their features, contact user support...
 
