@@ -81,6 +81,12 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Linux64' and '$(Cfg_2)'=='true') or '$(Cfg_2_Linux64)'!=''">
+        <Cfg_2_Linux64>true</Cfg_2_Linux64>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='OSX64' and '$(Cfg_2)'=='true') or '$(Cfg_2_OSX64)'!=''">
         <Cfg_2_OSX64>true</Cfg_2_OSX64>
         <CfgParent>Cfg_2</CfgParent>
@@ -327,15 +333,23 @@
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Linux64)'!=''">
+        <Icon_MainIcon>..\assets\icons\vm.ico</Icon_MainIcon>
+        <Icns_MainIcns>..\assets\icons\vm.icns</Icns_MainIcns>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_OSX64)'!=''">
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=fr.olfsoftware.videomerger;CFBundleVersion=1.0.0;CFBundleShortVersionString=1.0;CFBundlePackageType=APPL;CFBundleSignature=????;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);NSHighResolutionCapable=true;LSApplicationCategoryType=public.app-category.utilities;NSLocationUsageDescription=The reason for accessing the location information of the user;NSContactsUsageDescription=The reason for accessing the contacts;NSCalendarsUsageDescription=The reason for accessing the calendar data;NSRemindersUsageDescription=The reason for accessing the reminders;NSCameraUsageDescription=The reason for accessing the camera;NSMicrophoneUsageDescription=The reason for accessing the microphone;NSMotionUsageDescription=The reason for accessing the accelerometer;NSDesktopFolderUsageDescription=The reason for accessing the Desktop folder;NSDocumentsFolderUsageDescription=The reason for accessing the Documents folder;NSDownloadsFolderUsageDescription=The reason for accessing the Downloads folder;NSNetworkVolumesUsageDescription=The reason for accessing files on a network volume;NSRemovableVolumesUsageDescription=The reason for accessing files on a removable volume;NSSpeechRecognitionUsageDescription=The reason for requesting to send user data to Apple&apos;s speech recognition servers;ITSAppUsesNonExemptEncryption=false;NSBluetoothAlwaysUsageDescription=The reason for accessing the Bluetooth interface</VerInfo_Keys>
+        <Icon_MainIcon>..\assets\icons\vm.ico</Icon_MainIcon>
+        <Icns_MainIcns>..\assets\icons\vm.icns</Icns_MainIcns>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_OSXARM64)'!=''">
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=fr.olfsoftware.videomerger;CFBundleVersion=1.0.0;CFBundleShortVersionString=1.0;CFBundlePackageType=APPL;CFBundleSignature=????;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);NSHighResolutionCapable=true;LSApplicationCategoryType=public.app-category.utilities;NSLocationUsageDescription=The reason for accessing the location information of the user;NSContactsUsageDescription=The reason for accessing the contacts;NSCalendarsUsageDescription=The reason for accessing the calendar data;NSRemindersUsageDescription=The reason for accessing the reminders;NSCameraUsageDescription=The reason for accessing the camera;NSMicrophoneUsageDescription=The reason for accessing the microphone;NSMotionUsageDescription=The reason for accessing the accelerometer;NSDesktopFolderUsageDescription=The reason for accessing the Desktop folder;NSDocumentsFolderUsageDescription=The reason for accessing the Documents folder;NSDownloadsFolderUsageDescription=The reason for accessing the Downloads folder;NSNetworkVolumesUsageDescription=The reason for accessing files on a network volume;NSRemovableVolumesUsageDescription=The reason for accessing files on a removable volume;NSSpeechRecognitionUsageDescription=The reason for requesting to send user data to Apple&apos;s speech recognition servers;ITSAppUsesNonExemptEncryption=false;NSBluetoothAlwaysUsageDescription=The reason for accessing the Bluetooth interface</VerInfo_Keys>
+        <Icon_MainIcon>..\assets\icons\vm.ico</Icon_MainIcon>
+        <Icns_MainIcns>..\assets\icons\vm.icns</Icns_MainIcns>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -343,6 +357,10 @@
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=2024 Patrick Prémartin;LegalTrademarks=;OriginalFilename=;ProgramID=fr.olfsoftware.videomerger;ProductName=$(MSBuildProjectName);ProductVersion=1.0;Comments=</VerInfo_Keys>
+        <Icon_MainIcon>..\assets\icons\vm.ico</Icon_MainIcon>
+        <Icns_MainIcns>..\assets\icons\vm.icns</Icns_MainIcns>
+        <UWP_DelphiLogo44>..\assets\icons\vm-44x44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>..\assets\icons\vm-150x150.png</UWP_DelphiLogo150>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -350,6 +368,10 @@
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=2024 Patrick Prémartin;LegalTrademarks=;OriginalFilename=;ProgramID=fr.olfsoftware.videomerger;ProductName=$(MSBuildProjectName);ProductVersion=1.0;Comments=</VerInfo_Keys>
+        <Icon_MainIcon>..\assets\icons\vm.ico</Icon_MainIcon>
+        <Icns_MainIcns>..\assets\icons\vm.icns</Icns_MainIcns>
+        <UWP_DelphiLogo44>..\assets\icons\vm-44x44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>..\assets\icons\vm-150x150.png</UWP_DelphiLogo150>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -436,6 +458,34 @@
                 <DeployFile LocalName="$(BDS)\bin\delphi_PROJECTICNS.icns" Configuration="Release" Class="ProjectOSXResource">
                     <Platform Name="OSXARM64">
                         <RemoteName>VideoMerger.icns</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\assets\icons\vm-150x150.png" Configuration="Debug" Class="UWP_DelphiLogo150">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets\</RemoteDir>
+                        <RemoteName>Logo150x150.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\assets\icons\vm-150x150.png" Configuration="Debug" Class="UWP_DelphiLogo150">
+                    <Platform Name="Win64">
+                        <RemoteDir>Assets\</RemoteDir>
+                        <RemoteName>Logo150x150.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\assets\icons\vm-44x44.png" Configuration="Debug" Class="UWP_DelphiLogo44">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets\</RemoteDir>
+                        <RemoteName>Logo44x44.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\assets\icons\vm-44x44.png" Configuration="Debug" Class="UWP_DelphiLogo44">
+                    <Platform Name="Win64">
+                        <RemoteDir>Assets\</RemoteDir>
+                        <RemoteName>Logo44x44.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
