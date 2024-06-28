@@ -160,6 +160,8 @@ object frmMain: TfrmMain
     MultiResBitmap = <
       item
       end>
+    Images = dmLogo.imgLogo
+    ImageIndex = 0
     URL = 'https://videomerger.olfsoftware.fr'
     Copyright = '(c) 2024 Patrick Pr'#233'martin'
     Left = 304

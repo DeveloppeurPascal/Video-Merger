@@ -22,7 +22,8 @@ uses
   Olf.FMX.AboutDialog,
   Olf.FMX.AboutDialogForm,
   cFileSelector,
-  uMergingWorker;
+  uMergingWorker,
+  uDMLogo;
 
 type
   TfrmMain = class(TForm)
