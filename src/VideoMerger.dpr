@@ -13,12 +13,14 @@ uses
   u_urlOpen in '..\lib-externes\librairies\src\u_urlOpen.pas',
   uConfig in 'uConfig.pas',
   uMergingWorker in 'uMergingWorker.pas',
-  fOptions in 'fOptions.pas' {frmOptions};
+  fOptions in 'fOptions.pas' {frmOptions},
+  uDMLogo in 'uDMLogo.pas' {dmLogo: TDataModule};
 
 {$R *.res}
 
 begin
   Application.Initialize;
+  Application.CreateForm(TdmLogo, dmLogo);
   Application.CreateForm(TfrmMain, frmMain);
   Application.Run;
 end.
