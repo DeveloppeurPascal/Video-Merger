@@ -193,4 +193,40 @@ object frmMain: TfrmMain
     Size.Height = 13.000000000000000000
     Size.PlatformDefault = False
   end
+  object MainMenu1: TMainMenu
+    Left = 160
+    Top = 184
+    object mnuMacOS: TMenuItem
+      Text = 'mnuMacOS'
+    end
+    object mnuFile: TMenuItem
+      Text = '&File'
+      object mnuFileNewSelector: TMenuItem
+        Locked = True
+        Text = '&Add a file selector'
+        OnClick = btnAddAFileSelectorClick
+      end
+      object mnuFileQuit: TMenuItem
+        Locked = True
+        Text = '&Quit'
+        OnClick = btnQuitClick
+      end
+    end
+    object mnuTools: TMenuItem
+      Text = '&Tools'
+      object mnuToolsOptions: TMenuItem
+        Locked = True
+        Text = '&Options'
+        OnClick = btnOptionsClick
+      end
+    end
+    object mnuHelp: TMenuItem
+      Text = '&Help'
+      object mnuHelpAbout: TMenuItem
+        Locked = True
+        Text = 'mnuHelpAbout'
+        OnClick = btnAboutClick
+      end
+    end
+  end
 end

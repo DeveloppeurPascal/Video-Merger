@@ -23,7 +23,8 @@ uses
   Olf.FMX.AboutDialogForm,
   cFileSelector,
   uMergingWorker,
-  uDMLogo;
+  uDMLogo,
+  FMX.Menus;
 
 type
   TfrmMain = class(TForm)
@@ -41,6 +42,15 @@ type
     lblWaitingListStatus: TLabel;
     FlowLayout1: TFlowLayout;
     Splitter1: TSplitter;
+    MainMenu1: TMainMenu;
+    mnuMacOS: TMenuItem;
+    mnuFile: TMenuItem;
+    mnuTools: TMenuItem;
+    mnuHelp: TMenuItem;
+    mnuHelpAbout: TMenuItem;
+    mnuToolsOptions: TMenuItem;
+    mnuFileQuit: TMenuItem;
+    mnuFileNewSelector: TMenuItem;
     procedure btnQuitClick(Sender: TObject);
     procedure btnAboutClick(Sender: TObject);
     procedure btnOptionsClick(Sender: TObject);
@@ -61,7 +71,7 @@ type
     procedure AddLog(Const Text: string);
     procedure InitMainFormCaption;
     procedure InitAboutDialogDescriptionAndLicense;
-
+    procedure InitMainMenuForMacOS;
   public
   end;
 
@@ -216,6 +226,8 @@ begin
   InitMainFormCaption;
   InitAboutDialogDescriptionAndLicense;
 
+  InitMainMenuForMacOS;
+
   Memo1.lines.Clear;
   WaitingListCount := 0;
 
@@ -318,6 +330,21 @@ begin
 {$ENDIF}
   caption := caption + OlfAboutDialog1.Titre + ' v' +
     OlfAboutDialog1.VersionNumero;
+end;
+
+procedure TfrmMain.InitMainMenuForMacOS;
+begin
+{$IFDEF MACOS}
+  mnuMacOS.visible := true;
+  mnuFileQuit.shortcut := scCommand + ord('Q'); // 4177;
+  mnuHelpAbout.Parent := mnuMacOS;
+  mnuHelp.visible := (mnuHelp.Children[0].ChildrenCount > 0);
+  mnuToolsOptions.Parent := mnuMacOS;
+  mnuTools.visible := (mnuTools.Children[0].ChildrenCount > 0);
+{$ELSE}
+  mnuMacOS.visible := false;
+{$ENDIF}
+  mnuHelpAbout.Text := '&About ' + OlfAboutDialog1.Titre;
 end;
 
 procedure TfrmMain.OlfAboutDialog1URLClick(const AURL: string);
