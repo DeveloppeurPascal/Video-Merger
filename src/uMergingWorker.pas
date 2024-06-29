@@ -47,11 +47,11 @@ uses
 {$IF Defined(MACOS)}
   Posix.Stdlib,
 {$ELSEIF Defined(MSWINDOWS)}
-  Winapi.ShellAPI,
-  Winapi.Windows,
+  DosCommand,
 {$ENDIF}
   System.IOUtils,
-  System.Types, uConfig;
+  System.Types,
+  uConfig;
 
 procedure TMergingWorker.AddError(Text: string);
 begin
@@ -183,8 +183,8 @@ begin
                 FOnWorkStart;
             end);
         try
-          cmd := cmd + ' -filter_complex ''concat=n=' + NbVideos.tostring +
-            ':v=1:a=1''';
+          cmd := cmd + ' -filter_complex "concat=n=' + NbVideos.tostring +
+            ':v=1:a=1"';
           inc(Counter);
           ToFilePath := tpath.Combine(TConfig.MergeToPath,
             ToFileName + '-' + Counter.tostring + '.mp4');
@@ -213,6 +213,10 @@ procedure TMergingWorker.ExecuteFFmpegAndWait(const AParams,
 // cf https://github.com/DeveloppeurPascal/LeTempsDUneTomate/blob/main/src/fMain.pas
 var
   LParams: string;
+  cmd: string;
+{$IFDEF MSWINDOWS}
+  DosCommand: TDosCommand;
+{$ENDIF}
 begin
   if tfile.exists(DestinationFilePath) then
   begin
@@ -222,18 +226,31 @@ begin
 
 {$IFDEF DEBUG}
   LParams := '-y ' + AParams;
-  AddLog('"' + TConfig.FFmpegPath + '" ' + LParams + ' "' +
-    DestinationFilePath + '"');
 {$ELSE}
   LParams := '-y -loglevel error ' + AParams;
 {$ENDIF}
+  cmd := '"' + TConfig.FFmpegPath + '" ' + LParams + ' "' +
+    DestinationFilePath + '"';
+{$IFDEF DEBUG}
+  AddLog(cmd);
+{$ENDIF}
 {$IF Defined(MSWINDOWS)}
-  ShellExecute(0, pwidechar(TConfig.FFmpegPath),
-    pwidechar(LParams + ' "' + DestinationFilePath + '"'), nil, nil,
-    SW_SHOWNORMAL);
+  DosCommand := TDosCommand.Create(nil);
+  try
+    DosCommand.CommandLine := cmd;
+    DosCommand.InputToOutput := false;
+    try
+      DosCommand.Execute;
+    except
+    end;
+    while DosCommand.IsRunning and
+      (DosCommand.EndStatus = TEndStatus.esStill_Active) do
+      sleep(100);
+  finally
+    DosCommand.free;
+  end;
 {$ELSEIF Defined(MACOS)}
-  _system(PAnsiChar(ansistring('"' + TConfig.FFmpegPath + '" ' + LParams + ' "'
-    + DestinationFilePath + '"')));
+  _system(PAnsiChar(ansistring(cmd)));
 {$ELSE}
 {$MESSAGE FATAL 'Platform not available.'}
 {$ENDIF}
