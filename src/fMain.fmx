@@ -155,8 +155,8 @@ object frmMain: TfrmMain
   end
   object OlfAboutDialog1: TOlfAboutDialog
     Titre = 'Video merger'
-    VersionNumero = '1.0a'
-    VersionDate = '20240605'
+    VersionNumero = '1.1'
+    VersionDate = '20240629'
     MultiResBitmap = <
       item
       end>
