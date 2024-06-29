@@ -14,7 +14,8 @@ uses
   uConfig in 'uConfig.pas',
   uMergingWorker in 'uMergingWorker.pas',
   fOptions in 'fOptions.pas' {frmOptions},
-  uDMLogo in 'uDMLogo.pas' {dmLogo: TDataModule};
+  uDMLogo in 'uDMLogo.pas' {dmLogo: TDataModule},
+  DOSCommand in 'DOSCommand.pas';
 
 {$R *.res}
 
