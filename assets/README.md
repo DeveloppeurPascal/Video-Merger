@@ -1,5 +1,7 @@
-# Video Merger's time assets
+# Assets for this code repository
 
-This folder contains assets for Video Merger's program. Don't use them outside this project.
+Having public resources does not mean you can use them.
 
-See individual licenses in each folder and get the assets (if available) from their authors or distributors, not from this repository.
+By default, you are not authorized to use the files in this folder's tree outside the projects in this repository. They are licensed by their authors and designers.
+
+Please refer to the README.md files in each folder to check license information, use cases and source links.
